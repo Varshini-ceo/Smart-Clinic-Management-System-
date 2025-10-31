@@ -1,24 +1,22 @@
-package com.smartclinic.service;
+package com.clinic.service;
 
-import com.smartclinic.model.Appointment;
-import com.smartclinic.repository.AppointmentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import java.time.LocalDate;
 import java.util.List;
+import org.springframework.stereotype.Service;
+import com.clinic.entity.Appointment;
+import com.clinic.repository.AppointmentRepository;
 
 @Service
 public class AppointmentService {
 
-    @Autowired
-    private AppointmentRepository appointmentRepository;
+    private final AppointmentRepository appointmentRepository;
+    public AppointmentService(AppointmentRepository repo) { this.appointmentRepository = repo; }
 
     public Appointment createAppointment(Appointment appointment) {
         return appointmentRepository.save(appointment);
     }
 
-    public List<Appointment> getAllAppointments() {
-        return appointmentRepository.findAll();
+    public List<Appointment> getAppointmentsByDoctorAndDate(Long doctorId, LocalDate date) {
+        return appointmentRepository.findByDoctorIdAndAppointmentDate(doctorId, date.atStartOfDay());
     }
 }
-
