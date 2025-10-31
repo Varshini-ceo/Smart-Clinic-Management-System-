@@ -1,32 +1,28 @@
-package com.smartclinic.controller;
+package com.clinic.controller;
 
-import com.smartclinic.model.Doctor;
-import com.smartclinic.service.DoctorService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.clinic.service.DoctorService;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/doctors")
+@RequestMapping("/doctor")
 public class DoctorController {
 
-    @Autowired
-    private DoctorService doctorService;
+    private final DoctorService doctorService;
+    public DoctorController(DoctorService doctorService) { this.doctorService = doctorService; }
 
-    @GetMapping
-    public List<Doctor> getAllDoctors() {
-        return doctorService.getAllDoctors();
-    }
+    @GetMapping("/availability/{doctorId}/{date}")
+    public ResponseEntity<?> getDoctorAvailability(
+            @PathVariable Long doctorId,
+            @PathVariable String date,
+            @RequestHeader("Authorization") String token) {
 
-    @PostMapping
-    public Doctor addDoctor(@RequestBody Doctor doctor) {
-        return doctorService.addDoctor(doctor);
-    }
+        if (!token.startsWith("token-")) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid token");
+        }
 
-    @GetMapping("/{id}")
-    public Doctor getDoctorById(@PathVariable Long id) {
-        return doctorService.getDoctorById(id);
+        List<String> available = doctorService.getDoctorAvailability(doctorId, date);
+        return ResponseEntity.ok(available);
     }
 }
-
