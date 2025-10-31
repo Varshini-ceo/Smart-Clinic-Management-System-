@@ -1,16 +1,83 @@
-# User Stories - Smart Clinic Management System
+# Smart Clinic Management System - User Stories
 
-## 👨‍⚕️ Doctor
-- As a doctor, I can view my scheduled appointments.
-- As a doctor, I can add prescriptions for a patient.
-- As a doctor, I can view patient history.
+## Doctor
 
-## 🧍 Patient
-- As a patient, I can register and log in securely.
-- As a patient, I can book, reschedule, or cancel appointments.
-- As a patient, I can view my prescriptions and visit history.
+### User Story 1: View Appointments by Date
+- **As a** doctor  
+- **I want to** view all my appointments for a given date  
+- **So that** I can plan my daily consultations efficiently  
+- **Acceptance Criteria:** The system must display patient name, appointment time, and status.  
+- **Priority:** High  
+- **Story Points:** 5
 
-## 🧑‍💼 Admin
-- As an admin, I can manage doctors, patients, and appointments.
-- As an admin, I can generate reports of clinic activities.
-- As an admin, I can remove inactive accounts.
+### User Story 2: Manage Prescriptions
+- **As a** doctor  
+- **I want to** add or update prescriptions for each appointment  
+- **So that** patients receive accurate treatment details  
+- **Acceptance Criteria:** Doctor can enter medicine name, dosage, and duration.  
+- **Priority:** Medium  
+- **Story Points:** 3
+
+### User Story 3: Monthly Patient Report
+- **As a** doctor  
+- **I want to** generate a report of patients attended per month  
+- **So that** I can track my consultation trends  
+- **Acceptance Criteria:** System generates report filtered by month and year.  
+- **Priority:** Low  
+- **Story Points:** 2
+
+---
+
+## Patient
+
+### User Story 1: Register & Login
+- **As a** patient  
+- **I want to** register and log in  
+- **So that** I can access my medical records and book appointments  
+- **Acceptance Criteria:** Unique email and password required.  
+- **Priority:** High  
+- **Story Points:** 5
+
+### User Story 2: Book Appointment
+- **As a** patient  
+- **I want to** book an appointment with a doctor by specialty and time  
+- **So that** I can receive medical consultation conveniently  
+- **Acceptance Criteria:** Appointment is confirmed via email and stored in database.  
+- **Priority:** High  
+- **Story Points:** 8
+
+### User Story 3: View Prescription
+- **As a** patient  
+- **I want to** view my prescriptions after consultations  
+- **So that** I can follow the prescribed medications correctly  
+- **Acceptance Criteria:** Prescriptions should be linked to appointment ID.  
+- **Priority:** Medium  
+- **Story Points:** 4
+
+---
+
+## Admin
+
+### User Story 1: Manage Doctor Accounts
+- **As an** admin  
+- **I want to** add, update, or deactivate doctor accounts  
+- **So that** only active doctors appear in the system  
+- **Acceptance Criteria:** Must validate license before activation.  
+- **Priority:** High  
+- **Story Points:** 5
+
+### User Story 2: Manage Patient Records
+- **As an** admin  
+- **I want to** view all patient data and appointments  
+- **So that** I can handle support or disputes efficiently  
+- **Acceptance Criteria:** Records must be retrievable by date, ID, or name.  
+- **Priority:** Medium  
+- **Story Points:** 3
+
+### User Story 3: View System Reports
+- **As an** admin  
+- **I want to** generate summary reports  
+- **So that** I can monitor overall clinic performance  
+- **Acceptance Criteria:** Reports include total appointments, doctors, and patients.  
+- **Priority:** Low  
+- **Story Points:** 2
