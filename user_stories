@@ -1,1 +1,16 @@
-user
+# User Stories - Smart Clinic Management System
+
+## 👨‍⚕️ Doctor
+- As a doctor, I can view my scheduled appointments.
+- As a doctor, I can add prescriptions for a patient.
+- As a doctor, I can view patient history.
+
+## 🧍 Patient
+- As a patient, I can register and log in securely.
+- As a patient, I can book, reschedule, or cancel appointments.
+- As a patient, I can view my prescriptions and visit history.
+
+## 🧑‍💼 Admin
+- As an admin, I can manage doctors, patients, and appointments.
+- As an admin, I can generate reports of clinic activities.
+- As an admin, I can remove inactive accounts.
