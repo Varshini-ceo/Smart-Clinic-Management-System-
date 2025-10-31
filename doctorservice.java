@@ -1,28 +1,16 @@
-package com.smartclinic.service;
+package com.clinic.service;
 
-import com.smartclinic.model.Doctor;
-import com.smartclinic.repository.DoctorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
 public class DoctorService {
 
-    @Autowired
-    private DoctorRepository doctorRepository;
-
-    public List<Doctor> getAllDoctors() {
-        return doctorRepository.findAll();
+    public boolean validateLogin(String email, String password) {
+        return email.equals("doctor@gmail.com") && password.equals("password123");
     }
 
-    public Doctor addDoctor(Doctor doctor) {
-        return doctorRepository.save(doctor);
-    }
-
-    public Doctor getDoctorById(Long id) {
-        return doctorRepository.findById(id).orElse(null);
+    public List<String> getDoctorAvailability(Long doctorId, String date) {
+        return List.of("09:00-11:00", "15:00-17:00");
     }
 }
-
