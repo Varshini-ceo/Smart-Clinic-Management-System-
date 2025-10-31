@@ -1,1 +1,39 @@
 
+# Smart Clinic Management System - Database Schema Design
+
+## Tables
+
+### Doctor
+| Column | Type | Constraints |
+|--------|------|--------------|
+| id | INT | PRIMARY KEY, AUTO_INCREMENT |
+| name | VARCHAR(100) | NOT NULL |
+| specialization | VARCHAR(100) | NOT NULL |
+| phone | VARCHAR(15) | UNIQUE |
+| email | VARCHAR(100) | UNIQUE |
+
+### Patient
+| Column | Type | Constraints |
+|--------|------|--------------|
+| id | INT | PRIMARY KEY, AUTO_INCREMENT |
+| name | VARCHAR(100) | NOT NULL |
+| age | INT | NOT NULL |
+| gender | ENUM('Male','Female','Other') | NOT NULL |
+| phone | VARCHAR(15) | UNIQUE |
+
+### Appointment
+| Column | Type | Constraints |
+|--------|------|--------------|
+| id | INT | PRIMARY KEY, AUTO_INCREMENT |
+| doctor_id | INT | FOREIGN KEY REFERENCES Doctor(id) |
+| patient_id | INT | FOREIGN KEY REFERENCES Patient(id) |
+| appointment_date | DATETIME | NOT NULL |
+| status | ENUM('Scheduled', 'Completed', 'Cancelled') | DEFAULT 'Scheduled' |
+
+### Prescription
+| Column | Type | Constraints |
+|--------|------|--------------|
+| id | INT | PRIMARY KEY, AUTO_INCREMENT |
+| appointment_id | INT | FOREIGN KEY REFERENCES Appointment(id) |
+| medicines | TEXT | NOT NULL |
+| notes | TEXT | NULL |
