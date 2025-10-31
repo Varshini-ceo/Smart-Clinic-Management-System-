@@ -1,27 +1,26 @@
 
-package com.smartclinic.controller;
+package com.clinic.controller;
 
-import com.smartclinic.model.Prescription;
-import com.smartclinic.service.PrescriptionService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.clinic.entity.Prescription;
+import com.clinic.service.PrescriptionService;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/api/prescriptions")
+@RequestMapping("/prescription")
 public class PrescriptionController {
 
-    @Autowired
-    private PrescriptionService prescriptionService;
+    private final PrescriptionService service;
+    public PrescriptionController(PrescriptionService service) { this.service = service; }
 
-    @PostMapping
-    public Prescription addPrescription(@RequestBody Prescription prescription) {
-        return prescriptionService.savePrescription(prescription);
-    }
+    @PostMapping("/add/{token}")
+    public ResponseEntity<?> addPrescription(
+            @PathVariable String token, 
+            @RequestBody Prescription prescription) {
 
-    @GetMapping
-    public List<Prescription> getAllPrescriptions() {
-        return prescriptionService.getAllPrescriptions();
+        if (!token.startsWith("token-"))
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid token");
+
+        return ResponseEntity.ok(service.savePrescription(prescription));
     }
 }
